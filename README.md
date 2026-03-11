@@ -28,30 +28,18 @@ This project helps students and job seekers improve their resumes by highlightin
 6. A detailed report is provided to the user.
 
 ---
+## 📂 Project Structure
 
-## 🛠️ Technologies Used
-
-* **Python**
-* **Flask**
-* **Pandas**
-* **Matplotlib**
-* **pdfplumber**
-* **python-docx**
-* **ReportLab**
-* **HTML / CSS**
-
----
-
-📂 Project Structure
-HideSense-AI
+```
+HideSense-AI/
 │
 ├── app.py
 ├── skills.csv
-├── uploads/
+├── requirements.txt
 ├── templates/
 │   └── index.html
-├── static/
-└── README.md
+└── uploads/
+```
 
 ---
 
