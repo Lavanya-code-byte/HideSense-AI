@@ -42,18 +42,16 @@ This project helps students and job seekers improve their resumes by highlightin
 
 ---
 
-## 📂 Project Structure
-
+📂 Project Structure
 HideSense-AI
 │
 ├── app.py
 ├── skills.csv
-├── requirements.txt
-├── README.md
+├── uploads/
 ├── templates/
 │   └── index.html
 ├── static/
-└── uploads/
+└── README.md
 
 ---
 
