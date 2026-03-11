@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HireSense AI</title>
+
+<style>
+:root{
+    --primary:#2563eb;
+    --bg:#f6f7fb;
+    --card:#ffffff;
+    --text:#1f2937;
+    --muted:#6b7280;
+}
+
+*{
+    box-sizing:border-box;
+    font-family:"Segoe UI", Arial, sans-serif;
+}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+}
+
+.hero{
+    background:linear-gradient(135deg,#1e3a8a,#2563eb);
+    color:white;
+    padding:60px 20px;
+    text-align:center;
+}
+
+.hero h1{
+    margin:0;
+    font-size:42px;
+    letter-spacing:0.5px;
+}
+
+.hero p{
+    margin-top:10px;
+    font-size:18px;
+    opacity:0.9;
+}
+
+.container{
+    max-width:1100px;
+    margin:-60px auto 60px;
+    padding:0 20px;
+}
+
+.card{
+    background:var(--card);
+    border-radius:14px;
+    padding:35px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    margin-bottom:30px;
+}
+
+.upload-box{
+    border:2px dashed #c7d2fe;
+    padding:40px;
+    border-radius:12px;
+    text-align:center;
+}
+
+.upload-box input{
+    margin-top:15px;
+}
+
+button{
+    background:var(--primary);
+    color:white;
+    border:none;
+    padding:14px 34px;
+    border-radius:8px;
+    font-size:16px;
+    margin-top:20px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.stat{
+    background:#f9fafb;
+    padding:25px;
+    border-radius:12px;
+    text-align:center;
+}
+
+.stat h3{
+    margin:0;
+    font-size:15px;
+    color:var(--muted);
+}
+
+.stat .value{
+    font-size:28px;
+    font-weight:700;
+    margin-top:8px;
+}
+
+.progress{
+    background:#e5e7eb;
+    height:10px;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:12px;
+}
+
+.progress-bar{
+    background:var(--primary);
+    height:10px;
+    width:0%;
+    transition:width 1s ease;
+}
+
+.skill-badge{
+    background:#eef2ff;
+    color:#3730a3;
+    padding:7px 14px;
+    border-radius:20px;
+    margin:6px;
+    display:inline-block;
+    font-size:14px;
+}
+
+.skill-badge.red{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:14px;
+    margin-top:40px;
+}
+
+a{
+    color:var(--primary);
+    text-decoration:none;
+    font-weight:600;
+}
+</style>
+</head>
+
+<body>
+<div class="hero">
+    <h1>HireSense AI</h1>
+    <p>Professional Resume & Career Intelligence Platform</p>
+</div>
+
+<div class="container">
+<div class="card">
+<div class="upload-box">
+    <h2>Upload Your Resume</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="resume" required>
+        <br>
+        <button>Analyze Resume</button>
+    </form>
+</div>
+</div>
+
+{% if data %}
+<div class="card">
+
+<div class="grid">
+
+<div class="stat">
+<h3>Recommended Role</h3>
+<div class="value">{{ data.role }}</div>
+</div>
+
+<div class="stat">
+<h3>Career Level</h3>
+<div class="value">{{ data.level }}</div>
+</div>
+
+<div class="stat">
+<h3>Career Readiness</h3>
+<div class="value">{{ data.ats }}%</div>
+<div class="progress">
+<div class="progress-bar" id="bar"></div>
+</div>
+</div>
+
+</div>
+
+<br>
+
+<h3>Skill Profile</h3>
+{% for s in data.skills %}
+<span class="skill-badge">{{ s }}</span>
+{% endfor %}
+
+<br><br>
+
+<h3>Skill Gap Analysis</h3>
+{% for s in data.improve %}
+<span class="skill-badge red">{{ s }}</span>
+{% endfor %}
+
+<br><br>
+
+<a href="/download">Download Professional PDF Report</a>
+
+</div>
+
+<script>
+const ats = {{ data.ats }};
+document.getElementById("bar").style.width = ats + "%";
+</script>
+
+{% endif %}
+
+<div class="footer">
+HireSense AI © 2026 | AI-Driven Career Insights
+</div>
+
+</div>
+
+</body>
+</html>
